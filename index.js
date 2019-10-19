@@ -34,12 +34,16 @@ module.exports = function(window) {
   var scratch2 = require("./scratch2")
   scratch2.init(window)
 
-  var scratch3 = require("./scratch3")
-  scratch3.init(window)
+  //var scratch3 = require("./scratch3")
+  //scratch3.init(window)
+
+  var scratch3light = require("./scratch3-light")
+  scratch3light.init(window)
 
   function appendStyles() {
-    document.head.appendChild(scratch2.makeStyle())
-    document.head.appendChild(scratch3.makeStyle())
+    //document.head.appendChild(scratch2.makeStyle())
+    //document.head.appendChild(scratch3.makeStyle())
+    document.head.appendChild(scratch3light.makeStyle())
   }
 
   function parse(code, options) {
@@ -49,7 +53,7 @@ module.exports = function(window) {
   function newView(doc, options) {
     var options = Object.assign(
       {
-        style: "scratch2",
+        style: "scratch3light",
       },
       options
     )
@@ -58,6 +62,8 @@ module.exports = function(window) {
         return scratch2.newView(doc)
       case "scratch3":
         return scratch3.newView(doc)
+      case "scratch3light":
+        return scratch3light.newView(doc)
       default:
         throw new Error("Unknown style: " + options.style)
     }
